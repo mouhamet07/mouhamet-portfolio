@@ -5,11 +5,12 @@
     if (window.requestAnimationFrame) return window.requestAnimationFrame(callback);
     return window.setTimeout(callback, 16);
   };
+  var prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function scrollToId(id) {
-    var element = document.getElementById(id);
+    var element = id && document.getElementById(id);
     if (!element) return false;
-    element.scrollIntoView({ behavior: "smooth", block: "start" });
+    element.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
     return true;
   }
 
@@ -30,38 +31,45 @@
   }
 
   function closeDrawer(restoreFocus) {
-    if (!drawer || !overlay || !burgerButton) return;
+    if (!drawer) return;
     drawer.classList.remove("is-open");
-    overlay.classList.remove("is-open");
+    if (overlay) overlay.classList.remove("is-open");
     drawer.setAttribute("aria-hidden", "true");
     drawer.setAttribute("inert", "");
-    burgerButton.setAttribute("aria-expanded", "false");
-    burgerButton.setAttribute("aria-label", "Ouvrir le menu");
+    if (burgerButton) {
+      burgerButton.setAttribute("aria-expanded", "false");
+      burgerButton.setAttribute("aria-label", "Ouvrir le menu");
+    }
     if (iconOpen) iconOpen.classList.remove("is-hidden");
     if (iconClose) iconClose.classList.add("is-hidden");
-    document.body.classList.remove("menu-open");
+    if (document.body) document.body.classList.remove("menu-open");
 
-    if (restoreFocus !== false && lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+    if (restoreFocus !== false && lastFocusedElement && document.contains(lastFocusedElement)) {
       lastFocusedElement.focus();
     }
     lastFocusedElement = null;
   }
 
   function openDrawer() {
-    if (!drawer || !overlay || !burgerButton) return;
+    if (!drawer || !burgerButton) return;
     lastFocusedElement = burgerButton;
     drawer.classList.add("is-open");
-    overlay.classList.add("is-open");
+    if (overlay) overlay.classList.add("is-open");
     drawer.setAttribute("aria-hidden", "false");
     drawer.removeAttribute("inert");
     burgerButton.setAttribute("aria-expanded", "true");
     burgerButton.setAttribute("aria-label", "Fermer le menu");
-    document.body.classList.add("menu-open");
+    if (document.body) document.body.classList.add("menu-open");
     if (iconOpen) iconOpen.classList.add("is-hidden");
     if (iconClose) iconClose.classList.remove("is-hidden");
-    if (drawerClose) drawerClose.focus();
+    var focusableElements = getDrawerFocusableElements();
+    if (focusableElements.length) focusableElements[0].focus();
   }
 
+  if (drawer) {
+    drawer.setAttribute("aria-hidden", "true");
+    drawer.setAttribute("inert", "");
+  }
   if (burgerButton && drawer) {
     burgerButton.setAttribute("aria-controls", drawer.id);
     burgerButton.addEventListener("click", function () {
@@ -72,18 +80,11 @@
   if (overlay) overlay.addEventListener("click", function () { closeDrawer(); });
   if (drawerClose) drawerClose.addEventListener("click", function () { closeDrawer(); });
 
-  document.querySelectorAll("[data-goto]").forEach(function (link) {
+  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
     link.addEventListener("click", function (event) {
-      var targetId = link.getAttribute("data-goto");
+      var targetId = link.getAttribute("data-nav") || link.getAttribute("data-goto") || link.getAttribute("href").slice(1);
       if (scrollToId(targetId)) event.preventDefault();
-    });
-  });
-
-  document.querySelectorAll("[data-nav]").forEach(function (link) {
-    link.addEventListener("click", function (event) {
-      var targetId = link.getAttribute("data-nav");
-      if (scrollToId(targetId)) event.preventDefault();
-      closeDrawer(false);
+      if (drawer && drawer.classList.contains("is-open")) closeDrawer();
     });
   });
 
@@ -100,10 +101,10 @@
     if (!focusableElements.length) return;
     var firstElement = focusableElements[0];
     var lastElement = focusableElements[focusableElements.length - 1];
-    if (event.shiftKey && document.activeElement === firstElement) {
+    if (event.shiftKey && (document.activeElement === firstElement || !drawer.contains(document.activeElement))) {
       event.preventDefault();
       lastElement.focus();
-    } else if (!event.shiftKey && document.activeElement === lastElement) {
+    } else if (!event.shiftKey && (document.activeElement === lastElement || !drawer.contains(document.activeElement))) {
       event.preventDefault();
       firstElement.focus();
     }
@@ -111,7 +112,7 @@
 
   /* ---------- SCROLL STATE ---------- */
   var nav = document.getElementById("siteNav");
-  var sectionIds = ["accueil", "a-propos", "competences", "projets", "parcours", "contact"];
+  var sectionIds = ["projets", "competences", "parcours", "contact"];
   var navLinks = document.querySelectorAll("[data-nav]");
   var scrollPending = false;
 
@@ -123,7 +124,7 @@
 
   function updateScrollState() {
     if (nav) nav.classList.toggle("is-scrolled", window.scrollY > 40);
-    var currentSection = sectionIds[0];
+    var currentSection = null;
     sectionIds.forEach(function (sectionId) {
       var section = document.getElementById(sectionId);
       if (section && window.scrollY >= section.offsetTop - 140) currentSection = sectionId;
@@ -143,7 +144,12 @@
 
   /* ---------- REVEAL ON SCROLL ---------- */
   var revealElements = document.querySelectorAll(".reveal");
-  if ("IntersectionObserver" in window) {
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+    revealElements.forEach(function (element) { element.classList.add("is-visible"); });
+  } else {
+    var revealFallback = window.setTimeout(function () {
+      revealElements.forEach(function (element) { element.classList.add("is-visible"); });
+    }, 1200);
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
@@ -153,13 +159,9 @@
       });
     }, { threshold: 0.12 });
     revealElements.forEach(function (element) { observer.observe(element); });
-    window.setTimeout(function () {
-      revealElements.forEach(function (element) {
-        element.classList.add("is-visible");
-      });
-    }, 1500);
-  } else {
-    revealElements.forEach(function (element) { element.classList.add("is-visible"); });
+    var heroCopy = document.querySelector(".hero__copy.reveal");
+    if (heroCopy) heroCopy.classList.add("is-visible");
+    window.addEventListener("pagehide", function () { window.clearTimeout(revealFallback); }, { once: true });
   }
 
   /* ---------- LOCAL FORM VALIDATION ---------- */
@@ -216,7 +218,7 @@
     }
     if (submitLabel) {
       submitLabel.setAttribute("aria-live", "polite");
-      submitLabel.textContent = "Validation réussie. Envoi non configuré.";
+      submitLabel.textContent = "Envoi non configuré.";
     }
   });
 })();
