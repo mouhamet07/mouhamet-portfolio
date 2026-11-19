@@ -1,64 +1,18 @@
-# Style Guide — Portfolio de Mouhamet Thiam
+# Style Guide — Web Builder Multi-Agent System
 
-## 1. Objectif
+Ce document sert de référence stylistique transversale pour les projets générés. Les choix précis (couleurs, polices, rayons, ombres) sont définis pour chaque projet dans `docs/design-spec.md` à partir de `docs/project-spec.md`.
 
-Ce document définit les règles visuelles et stylistiques du portfolio.
+## 1. Principes visuels
+- **Clarté** : l'utilisateur comprend l'offre et l'action attendue en moins de 5 secondes.
+- **Hiérarchie** : un `<h1>` fort par page, des sous-titres lisibles, des CTA bien contrastés.
+- **Cohérence** : utiliser des tokens CSS (`--color-*`, `--space-*`, `--radius-*`) plutôt que des valeurs isolées.
 
-Il sert de référence commune pour :
+## 2. Icônes (Règle stricte)
+- Utiliser exclusivement la librairie d'icônes vectorielles choisie (`Bootstrap Icons`, `Font Awesome` ou `Lucide`).
+- **Aucun emoji** dans les cartes, boutons, titres ou listes.
 
-- Design Agent ;
-- HTML Agent ;
-- CSS Agent ;
-- JS Agent ;
-- QA Agent.
-
-Toute décision visuelle importante doit rester cohérente avec ce guide.
-
----
-
-# 2. Direction artistique
-
-Le portfolio doit transmettre une image :
-
-- professionnelle ;
-- moderne ;
-- technique ;
-- élégante ;
-- sobre ;
-- humaine ;
-- crédible.
-
-L'objectif n'est pas de créer une interface spectaculaire pour elle-même.
-
-L'objectif est de présenter clairement le profil, les compétences, les projets et le parcours.
-
-### Principes
-
-> Clarté avant décoration.
-
-> Hiérarchie avant effets.
-
-> Cohérence avant originalité.
-
-> Fonctionnalité avant animation.
-
-> Crédibilité avant tendance.
-
----
-
-# 3. Positionnement visuel
-
-Le portfolio doit refléter un profil à la croisée de :
-
-```text
-Software Engineering
-        +
-Web Development
-        +
-Backend
-        +
-DevOps
-        +
-Systems
-        +
-Networking
+## 3. Responsivité & Accessibilité
+- Mobile-first de `320px` à `1920px+`, zéro overflow horizontal.
+- Contraste WCAG AA minimum (4.5:1 texte courant, 3:1 grands titres).
+- États `:hover`, `:focus-visible` et `:active` distincts sur tous les éléments interactifs.
+- Motion design piloté par `data-motion="none|moderate|high"` + `@media (prefers-reduced-motion: reduce)`.

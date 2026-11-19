@@ -1,66 +1,50 @@
-# Global Guidelines
+# Global Guidelines — Web Builder Multi-Agent
 
-## Objectif
+## 1. Objectif
 
-Ce document définit les règles globales du portfolio.
+Ce document définit les règles transversales applicables à **tout site construit avec ce système** (site vitrine, portfolio, landing page, site corporate, etc.).
 
-Il constitue la référence commune à tous les agents du projet :
-
-- Design Agent ;
-- HTML Agent ;
-- CSS Agent ;
-- JS Agent ;
-- QA Agent.
-
-Les agents doivent consulter ce document avant toute modification importante.
-
-Aucune décision spécifique à un agent ne doit contredire ces règles sans justification claire.
+Il complète :
+- `AGENTS.md` (workflow et stack) ;
+- `docs/project-spec.md` (spécification du projet générée par `project-analyzer`) ;
+- `docs/design-spec.md` (direction artistique définie par `design-agent`).
 
 ---
 
-# 1. Identité du projet
+## 2. Principes de Qualité
 
-Le projet est le portfolio professionnel de **Mouhamet Thiam**.
+Chaque site livré doit être :
+1. **Unique** : conçu sur mesure selon le secteur, la cible et le cahier des charges (jamais un clone générique).
+2. **Clair & Orienté conversion** : compréhension immédiate de l'offre dès le Hero (< 5 secondes), CTA visibles et cohérents.
+3. **Vivant mais maîtrisé** : motion design calibré via `data-motion="none|moderate|high"` (`moderate` par défaut) et respect strict de `prefers-reduced-motion`.
+4. **Accessible** : sémantique HTML5, contrastes WCAG AA, navigation clavier, `alt` descriptifs, focus visibles.
+5. **Optimisé SEO** : balisage sémantique, métadonnées complètes, Open Graph, JSON-LD, `robots.txt` et `sitemap.xml`.
 
-Positionnement principal :
+---
 
-**Software & Systems Engineer**
+## 3. Vérité des informations
 
-Orientation professionnelle :
+> **Règle fondamentale : ne jamais inventer une information factuelle.**
 
-**Développeur Backend / Full Stack Junior**
+Ne jamais fabriquer :
+- de faux clients, partenaires, certifications ou témoignages ;
+- de fausses statistiques, années d'expérience ou nombres de projets ;
+- de fausses adresses, emails ou numéros de téléphone.
 
-Domaines principaux :
+Si une information manque dans le cahier des charges ou le prompt, utiliser `[À compléter : ...]` et le signaler dans le récapitulatif final.
 
-- Software Engineering ;
-- développement Backend / Full Stack ;
-- développement web ;
-- DevOps ;
-- Docker & CI/CD ;
-- systèmes ;
-- réseaux ;
-- infrastructure ;
-- monitoring.
+---
 
-Le portfolio doit présenter un profil d'ingénieur informatique polyvalent, capable d'intervenir sur différentes étapes du cycle de vie d'une application et de son infrastructure.
+## 4. Icônes & Médias
 
-Le positionnement repose sur la complémentarité entre **Software Engineering** et **Systems / Infrastructure**.
+- **Priorité absolue aux icônes vectorielles** (**Bootstrap Icons**, **Font Awesome**, **Lucide**).
+- **Zéro emoji dans l'interface utilisateur** (cartes, boutons, badges, listes, titres), sauf demande explicite du client.
+- **Images** : privilégier des visuels optimisés (`WebP`/`AVIF` ou SVG propres), avec `width`/`height` ou `aspect-ratio` pour éviter le layout shift (CLS), et `loading="lazy"` sous la ligne de flottaison.
+- **Formulaires statiques** : prévoir la validation côté client + indiquer clairement le connecteur d'envoi si statique (Web3Forms, Formspree, Netlify Forms ou fallback `mailto:`).
 
-Le portfolio doit mettre en évidence une compréhension de la chaîne complète :
+---
 
-```text
-Architecture
-    ↓
-Développement
-    ↓
-Tests
-    ↓
-Conteneurisation
-    ↓
-CI/CD
-    ↓
-Déploiement
-    ↓
-Infrastructure
-    ↓
-Monitoring
+## 5. Langues & Traductions
+
+- Déclarer l'attribut `lang` exact sur `<html>` (`lang="fr"`, `lang="en"`, etc.).
+- Si le site est multilingue, traduire naturellement (sans mot-à-mot littéral) tout en gardant exactement les mêmes faits, services et coordonnées entre les versions, et ajouter les balises `hreflang`.

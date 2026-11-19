@@ -1,292 +1,828 @@
 (function () {
   "use strict";
 
-  /* ---------- LOCAL FR / EN CONTENT ---------- */
-  var translations = {};
-  var languageTargets = [];
-  function register(selector, fr, en, attribute) {
-    var elements = document.querySelectorAll(selector);
-    Array.prototype.forEach.call(elements, function (element, index) {
-      var key = "i18n-" + languageTargets.length;
-      translations[key] = { fr: fr[index] || fr[0], en: en[index] || en[0] };
-      element.setAttribute("data-i18n", key);
-      languageTargets.push({ element: element, key: key, attribute: attribute });
-    });
-  }
-  function setVisibleText(element, value) {
-    var textNodes = Array.prototype.filter.call(element.childNodes, function (node) {
-      return node.nodeType === 3;
-    });
-    if (textNodes.length) textNodes[0].textContent = value;
-    else element.textContent = value;
-  }
-  register(".nav__link, .nav__drawer-links a", ["Travail", "Expertise", "Parcours", "Contact", "Travail", "Expertise", "Parcours", "Contact"], ["Work", "Expertise", "Journey", "Contact", "Work", "Expertise", "Journey", "Contact"]);
-  register(".lang-switch", ["Choisir la langue"], ["Choose language"], "aria-label");
-  register(".hero__eyebrow", ["SOFTWARE & SYSTEMS ENGINEER"], ["SOFTWARE & SYSTEMS ENGINEER"]);
-  register(".hero__title", ["Je construis des logiciels fiables et des systèmes qui tiennent dans le temps."], ["I build reliable software and systems that stand the test of time."]);
-  register(".hero__desc", ["Ingénieur logiciel et systèmes, orienté backend / full stack, je travaille à l'intersection du code, de l'automatisation et de l'infrastructure."], ["Software and systems engineer focused on backend / full stack work at the intersection of code, automation and infrastructure."]);
-  register(".hero__actions .btn:first-child", ["Voir les projets"], ["View projects"]);
-  register(".hero__actions .btn:nth-child(2)", ["Télécharger le CV"], ["Download CV"]);
-  register(".hero__location span", ["Dakar, Sénégal", "Disponible pour de nouvelles opportunités"], ["Dakar, Senegal", "Available for new opportunities"]);
-  register(".section-label", ["Positionnement", "Travail / projets", "Expertise", "Approche", "Parcours", "Contact"], ["Positioning", "Work / projects", "Expertise", "Approach", "Journey", "Contact"]);
-  register("#about-title", ["Du logiciel à l'infrastructure, je garde une vision complète de ce qui fait tenir un produit."], ["From software to infrastructure, I keep a complete view of what makes a product last."]);
-  register(".about__text p:not(.about__tags)", ["Jeune ingénieur Software & Systems avec une forte appétence pour l'architecture logicielle, le développement backend, le DevOps, les systèmes Linux et les réseaux.", "Je conçois des applications robustes, automatise les pipelines de déploiement, administre des environnements Linux et travaille les fondamentaux des réseaux d'entreprise."], ["Young Software & Systems engineer with a strong interest in software architecture, backend development, DevOps, Linux systems and networks.", "I design robust applications, automate deployment pipelines, administer Linux environments and work with enterprise networking fundamentals."]);
-  register(".about__tags", ["Développement · Administration système · Réseaux · Déploiement · Monitoring"], ["Development · Systems administration · Networking · Deployment · Monitoring"]);
-  register("#projects-title", ["Des systèmes pensés pour être compris, construits et exploités."], ["Systems designed to be understood, built and operated."]);
-  register(".project-story__meta", ["Software Engineering — Full Lifecycle", "Application web & backend Python", "Architecture multi-module", "Développement mobile", "DevOps", "Systems & DevOps", "Network Fundamentals"], ["Software Engineering — Full Lifecycle", "Web application & Python backend", "Multi-module architecture", "Mobile development", "DevOps", "Systems & DevOps", "Network Fundamentals"]);
-  register("article.project-story .project-story__content > p:not(.project-story__meta):not(.project-story__tech)", ["Plateforme de gestion immobilière permettant de centraliser les annonces, utilisateurs, visites et contrats.", "Prise en charge de l'analyse à la supervision : conception, modélisation PostgreSQL, développement backend Spring Boot et frontend Vue.js, API REST, authentification JWT avec gestion des rôles, tests, Docker, CI/CD et déploiement. Responsabilités : Product Owner, Lead Developer, développeur Full Stack et Backend, DevOps et gestion de la base de données.", "Plateforme de gestion académique avec authentification, gestion des étudiants et tableau de bord statistique.", "Application de gestion structurée en plusieurs modules : une application Java Console pour les ressources, une interface Symfony pour les managers et une application ASP.NET MVC / C# pour les clients.", "Mise en place d'une chaîne CI/CD automatisant les tests, la construction et le déploiement d'une application.", "Déploiement et supervision d'environnements Linux avec monitoring, dashboards et alertes.", "Conception et simulation d'infrastructures réseau avec routage, segmentation, sécurité et haute disponibilité."], ["Real-estate management platform centralizing listings, users, visits and contracts.", "Covered from analysis to supervision: design, PostgreSQL data modeling, Spring Boot backend and Vue.js frontend development, REST API, JWT authentication with role management, testing, Docker, CI/CD and deployment. Responsibilities included Product Owner, Lead Developer, Full Stack and Backend Developer, DevOps, and database management.", "Academic management platform with authentication, student management and a statistical dashboard.", "Management application structured into several modules: a Java Console application for resources, a Symfony interface for managers and an ASP.NET MVC / C# application for customers.", "A CI/CD pipeline automating application testing, building and deployment.", "Deployment and monitoring of Linux environments with dashboards and alerts.", "Design and simulation of network infrastructures with routing, segmentation, security and high availability."]);
-  register(".project-story__pending > p:not(.project-story__tech)", ["Architecture multi-module de gestion : l'application cliente en C# ASP.NET MVC couvre les fonctionnalités client, Java Console gère les ressources et Symfony fournit l'espace manager pour les commandes, le suivi et les statistiques.", "Le projet couvre le catalogue, les détails, les commandes, les compléments, les modes de consommation, récupération ou livraison, le paiement Wave / Orange Money, l'authentification, le suivi, le filtrage manager, les zones et l'affectation des livraisons. Les statistiques incluent les commandes actuelles et validées du jour, le chiffre d'affaires quotidien, les burgers les plus vendus et les commandes annulées du jour. Les modules partagent une base SQL créée manuellement, le projet est déployé sur Render et structuré autour des branches modelisation, java, csharp et symfony."], ["Multi-module management architecture: the C# ASP.NET MVC client application covers customer features, Java Console manages resources, and Symfony provides the manager area for orders, tracking and statistics.", "The project covers the catalogue, product details, orders, extras, consumption, pickup or delivery options, Wave / Orange Money payments, authentication, order tracking, manager filtering, zones and delivery assignment. Statistics include current and validated orders for the day, daily revenue, best-selling burgers and cancelled orders for the day. The modules share a manually created SQL database, the project is deployed on Render and organized around the modelisation, java, csharp and symfony branches."]);
-  register(".project-story__pending > .project-story__tech", ["C# · ASP.NET MVC · Java Console · Symfony · SQL · Render"], ["C# · ASP.NET MVC · Java Console · Symfony · SQL · Render"]);
-  register(".project-list__item > p:not(.project-story__meta):not(.project-story__tech)", ["Développement d'une application mobile avec Flutter pour la gestion d'un portefeuille électronique.", "Mise en place d'une chaîne CI/CD automatisant les tests, la construction et le déploiement d'une application.", "Déploiement et supervision d'environnements Linux avec monitoring, dashboards et alertes.", "Conception et simulation d'infrastructures réseau avec routage, segmentation, sécurité et haute disponibilité."], ["Development of a mobile application with Flutter for managing a digital wallet.", "A CI/CD pipeline automating application testing, building and deployment.", "Deployment and monitoring of Linux environments with dashboards and alerts.", "Design and simulation of network infrastructures with routing, segmentation, security and high availability."]);
-  register(".project-story__asset figcaption", ["[NEEDS ASSET] Capture principale du projet", "[NEEDS ASSET] Capture principale du projet", "[NEEDS ASSET] Capture principale du projet", "[NEEDS ASSET] Capture principale du projet", "[NEEDS ASSET] Capture principale du projet", "[NEEDS ASSET] Capture principale du projet", "[NEEDS ASSET] Capture principale du projet"], ["[NEEDS ASSET] Main project screenshot", "[NEEDS ASSET] Main project screenshot", "[NEEDS ASSET] Main project screenshot", "[NEEDS ASSET] Main project screenshot", "[NEEDS ASSET] Main project screenshot", "[NEEDS ASSET] Main project screenshot", "[NEEDS ASSET] Main project screenshot"]);
-  register("article.project-story a, .project-list__item a", ["Profil GitHub", "Profil GitHub", "Profil GitHub", "Voir la plateforme", "Profil GitHub", "Profil GitHub"], ["GitHub profile", "GitHub profile", "GitHub profile", "View platform", "GitHub profile", "GitHub profile"]);
-  register(".project-list", ["Autres travaux"], ["Other work"], "aria-label");
-  register("#skills-title", ["Une pratique qui relie conception, code et exploitation."], ["A practice connecting design, code and operations."]);
-  register(".skill-row p", ["Backend Development, API / REST, architecture, bases de données, frontend et testing : Java, Spring Boot, Symfony, PHP, Python, Flask, C#, ASP.NET, POO, MVC, SOLID et UML.", "Linux, Ubuntu, Kali Linux, Windows Server, Active Directory, administration système, LAMP, virtualisation, PostgreSQL, MySQL, Oracle, SQL et supervision.", "Docker, Docker Compose, Jenkins, GitHub Actions, CI/CD, Kubernetes, automatisation, Grafana et Prometheus.", "Connaissances complémentaires : TCP/IP, Cisco, Packet Tracer, GNS3, VLAN, routage, OSPF, EIGRP, NAT, ACL, STP et EtherChannel."], ["Backend development, API / REST, architecture, databases, frontend and testing: Java, Spring Boot, Symfony, PHP, Python, Flask, C#, ASP.NET, OOP, MVC, SOLID and UML.", "Linux, Ubuntu, Kali Linux, Windows Server, Active Directory, systems administration, LAMP, virtualization, PostgreSQL, MySQL, Oracle, SQL and monitoring.", "Docker, Docker Compose, Jenkins, GitHub Actions, CI/CD, Kubernetes, automation, Grafana and Prometheus.", "Complementary knowledge: TCP/IP, Cisco, Packet Tracer, GNS3, VLAN, routing, OSPF, EIGRP, NAT, ACL, STP and EtherChannel."]);
-  register("#approach-title", ["Une méthode lisible, de l'idée à la production."], ["A clear method, from idea to production."]);
-  register(".approach-list h3", ["Comprendre", "Concevoir", "Développer", "Tester", "Déployer"], ["Understand", "Design", "Develop", "Test", "Deploy"]);
-  register(".approach-list p", ["Clarifier les besoins et les contraintes avant de choisir une direction technique.", "Architecture logicielle, UML, POO, MVC, SOLID et modélisation.", "Applications web, APIs REST, backend, bases de données et interfaces modernes.", "Automatiser les contrôles et vérifier la qualité avant la mise en ligne.", "Docker, CI/CD, Jenkins, GitHub Actions, systèmes Linux et monitoring."], ["Clarify needs and constraints before choosing a technical direction.", "Software architecture, UML, OOP, MVC, SOLID and modeling.", "Web applications, REST APIs, backend, databases and modern interfaces.", "Automate checks and verify quality before going live.", "Docker, CI/CD, Jenkins, GitHub Actions, Linux systems and monitoring."]);
-  register("#education-title", ["Formation et repères."], ["Education and milestones."]);
-  register(".timeline-item h3", ["Licence en Informatique appliquée à la gestion des entreprises — Génie Logiciel, Réseaux & Systèmes", "Licence Développement d'applications Web et Mobile", "Baccalauréat L2 — Sciences Sociales et Humaines"], ["Bachelor's degree in Computer Science applied to business management — Software Engineering, Networks & Systems", "Bachelor's degree in Web and Mobile Application Development", "L2 Baccalaureate — Social and Human Sciences"]);
-  register(".timeline-item p:not(.timeline-item__period)", ["Institut Supérieur de Management — ISM, Dakar, Sénégal", "Mention Très Bien", "Université Numérique Cheikh Hamidou Kane — UNCHK", "Lycée d'Excellence Publique Blaise Diagne"], ["Higher Institute of Management — ISM, Dakar, Senegal", "Highest honors", "Cheikh Hamidou Kane Digital University — UNCHK", "Blaise Diagne Public Lycée of Excellence"]);
-  register(".timeline-item__period", ["2023 — 2026", "2024 — Aujourd'hui", "2022 — 2023"], ["2023 — 2026", "2024 — Present", "2022 — 2023"]);
-  register(".certs h3", ["Certifications"], ["Certifications"]);
-  register(".certs li", ["Cisco IT Essentials", "Cisco Introduction à la Cybersécurité"], ["Cisco IT Essentials", "Cisco Introduction to Cybersecurity"]);
-  register("#contact-title", ["Parlons d'un logiciel ou d'un système utile."], ["Let's talk about useful software or systems."]);
-  register(".contact__grid .section-sub", ["Un projet, une opportunité ou un besoin autour du logiciel et des systèmes ? Échangeons directement.", "Je serai heureux de découvrir votre contexte et de voir comment contribuer de manière concrète."], ["A project, opportunity or need around software and systems? Let's talk directly.", "I would be glad to learn about your context and see how I can contribute in a concrete way."]);
-  register(".contact-row__label", ["Email", "Téléphone", "LinkedIn", "GitHub"], ["Email", "Phone", "LinkedIn", "GitHub"]);
-  register(".contact__grid .btn", ["Me contacter"], ["Contact me"]);
-  register(".footer__brand-tag", ["Software & Systems Engineer"], ["Software & Systems Engineer"]);
-  register(".footer__bottom", ["© 2026 Mouhamet Thiam. Tous droits réservés."], ["© 2026 Mouhamet Thiam. All rights reserved."]);
-  register(".nav", ["Navigation principale"], ["Main navigation"], "aria-label");
-  register(".nav__drawer", ["Navigation mobile"], ["Mobile navigation"], "aria-label");
-  register("#burgerBtn", ["Ouvrir le menu"], ["Open menu"], "aria-label");
-  register("#drawerClose", ["Fermer le menu"], ["Close menu"], "aria-label");
-  register(".project-story__visual", ["Repère typographique du projet ImmoSN"], ["Typographic marker for the ImmoSN project"], "aria-label");
-  function applyLanguage(language) {
-    var selected = language === "en" ? "en" : "fr";
-    languageTargets.forEach(function (target) {
-      var value = translations[target.key][selected];
-      if (target.attribute) target.element.setAttribute(target.attribute, value);
-      else setVisibleText(target.element, value);
-    });
-    document.documentElement.lang = selected;
-    document.querySelectorAll("[data-language]").forEach(function (button) {
-      button.setAttribute("aria-pressed", button.getAttribute("data-language") === selected ? "true" : "false");
-    });
-    try { window.localStorage.setItem("portfolio-language", selected); } catch (error) { /* storage can be unavailable */ }
-  }
-  var savedLanguage = "fr";
-  try { savedLanguage = window.localStorage.getItem("portfolio-language") || "fr"; } catch (error) { /* storage can be unavailable */ }
-  document.querySelectorAll("[data-language]").forEach(function (button) {
-    button.addEventListener("click", function () { applyLanguage(button.getAttribute("data-language")); });
-  });
-  applyLanguage(savedLanguage);
+  document.documentElement.classList.add("js-ready");
 
-  var requestFrame = function (callback) {
-    if (window.requestAnimationFrame) return window.requestAnimationFrame(callback);
-    return window.setTimeout(callback, 16);
+  /* ---------- 1. COMPLETE FR / EN I18N ---------- */
+  var I18N = {
+    fr: {
+      "skip.link": "Aller au contenu principal",
+      "doc.title": "Mouhamet Thiam — Full Stack Developer | Web, Mobile & Software Engineering",
+      "nav.aria": "Navigation principale",
+      "nav.mobileAria": "Navigation mobile",
+      "nav.openMenu": "Ouvrir le menu",
+      "nav.closeMenu": "Fermer le menu",
+      "lang.aria": "Choisir la langue",
+      "nav.menuLabel": "Navigation",
+      "nav.journey": "Parcours",
+      "nav.experience": "Expérience",
+      "nav.craft": "Savoir-faire",
+      "nav.works": "Projets",
+      "nav.contact": "Contact",
+      "hero.eyebrow": "INTRODUCTION — FULL STACK DEVELOPER",
+      "hero.title": "Des idées métier aux produits numériques fiables.",
+      "hero.subtitle": "Web · Mobile · PWA · Software Engineering",
+      "hero.desc": "Développeur Full Stack à Dakar. Conception d'applications web, mobiles et PWA, du cahier des charges au déploiement.",
+      "hero.ctaProjects": "Découvrir mes projets",
+      "hero.ctaContact": "Me contacter",
+      "hero.ctaCv": "Télécharger le CV",
+      "hero.scrollCue": "Défiler pour explorer",
+      "hero.metaLocLabel": "Localisation",
+      "hero.metaLocVal": "Dakar, Sénégal",
+      "hero.metaStatusLabel": "Statut",
+      "hero.metaStatusVal": "Ouvert aux opportunités",
+      "hero.metaLangLabel": "Langues",
+      "hero.metaLangVal": "Français · Anglais · Wolof",
+      "journey.eyebrow": "THE JOURNEY",
+      "journey.title": "Parcours logiciel, systèmes & terrain.",
+      "journey.lead": "Formation en génie logiciel et réseaux, mise en pratique en entreprise.",
+      "journey.certsTitle": "Certifications Cisco",
+      "journey.certCyber": "Cisco: Introduction à la cybersécurité",
+      "journey.certHacker": "Cisco: Hacker éthique",
+      "journey.socialTitle": "Engagements & Ateliers",
+      "journey.socialItems": "Projet Humanitaire (Pouponnière de Médina) · Atelier « Build Your Business » (ISM)",
+      "journey.item1Period": "10/2026 — Aujourd'hui",
+      "journey.item1Title": "Stagiaire développeur — Web & Mobile",
+      "journey.item1Org": "Kiki Traiteur · Dakar",
+      "journey.item1Desc": "Applications web, mobiles, PWA et API REST.",
+      "journey.item2Period": "2024 — Aujourd'hui",
+      "journey.item2Title": "Licence Développement Web & Mobile",
+      "journey.item2Desc": "Architectures web modernes et mobile.",
+      "journey.item3Title": "Licence Génie Logiciel, Réseaux & Systèmes",
+      "journey.item3Org": "ISM Dakar · Mention Très Bien",
+      "journey.item3Desc": "UML, POO, SOLID, bases de données, Linux et réseaux Cisco.",
+      "journey.item4Title": "Baccalauréat L2",
+      "exp.eyebrow": "THE EXPERIENCE",
+      "exp.title": "Kiki Traiteur — Développement multi-domaines.",
+      "exp.role": "Stagiaire développeur",
+      "exp.date": "Octobre 2026 — Aujourd'hui · Dakar",
+      "exp.contextTitle": "Périmètre d'intervention",
+      "exp.contextText": "Intervention sur plusieurs domaines techniques (web, mobile, PWA et backend) en autonomie ou en collaboration, à partir de cahiers des charges.",
+      "exp.hl1": "Analyse de cahiers des charges et adaptation technique.",
+      "exp.hl2": "Interfaces web responsive, mobile et PWA.",
+      "exp.hl3": "API REST, logique backend et tests fonctionnels.",
+      "exp.hl4": "Versioning et collaboration via Git / GitHub.",
+      "exp.stackLabel": "Stack",
+      "exp.processTitle": "Workflow de livraison",
+      "exp.step1Title": "Analyse du cahier des charges",
+      "exp.step2Title": "Développement frontend",
+      "exp.step3Title": "Développement backend",
+      "exp.step4Title": "Déploiement",
+      "exp.step5Title": "Tests des fonctionnalités",
+      "exp.step6Title": "Passage en production",
+      "craft.eyebrow": "THE CRAFT",
+      "craft.title": "Une maîtrise technique reliée à des architectures réelles.",
+      "craft.filterAll": "Tous les domaines",
+      "craft.filterMobile": "Mobile & PWA",
+      "craft.filterDb": "Bases de données",
+      "craft.filterDevops": "DevOps & Systèmes",
+      "craft.frontendDesc": "Interfaces réactives, architectures modulaires et design responsive.",
+      "craft.backendDesc": "API REST sécurisées, architectures multi-tenant et logique métier.",
+      "craft.mobileDesc": "Applications cross-platform, interfaces tactiles et PWA installables.",
+      "craft.dbDesc": "Modélisation relationnelle, schémas partagés et isolation des données.",
+      "craft.devopsDesc": "Conteneurisation, chaînes CI/CD, supervision, Linux et réseaux.",
+      "craft.proofLabel": "Appliqué sur :",
+      "works.eyebrow": "SELECTED WORKS",
+      "works.title": "Études de cas sélectionnées : de la conception à l'exploitation.",
+      "works.filterAll": "Tous",
+      "works.filterDevops": "DevOps & Systèmes",
+      "works.mockupTag": "Mockup illustratif",
+      "works.lawtanMock1": "Catalogue filière rizicole · Commandes",
+      "works.lawtanMock2": "Demande directe & redirection",
+      "works.lawtanMock3": "Gestion commandes & devis",
+      "works.lawtanMeta": "Agro-industrie · Reprise & évolution",
+      "works.lawtanStatus": "Projet clôturé",
+      "works.lawtanSummary": "Reprise et enrichissement d'une plateforme numérique dédiée à la filière rizicole au Sénégal : compréhension d'une architecture existante et développement de nouvelles briques métier.",
+      "works.labelProblem": "Problématique & Objectif",
+      "works.lawtanProblem": "Poursuivre un projet existant pour doter la filière d'une vitrine publique, d'une marketplace et d'un circuit de devis fluide.",
+      "works.labelSolution": "Solution & Fonctionnalités",
+      "works.lawtanSolution": "Site vitrine public, marketplace, tunnel de commande, demandes de devis avec redirection WhatsApp et fonctionnalités back-office administrateur.",
+      "works.nfcMeta": "SaaS RH · Multi-tenant",
+      "works.nfcStatus": "NFC Simulé",
+      "works.nfcSummary": "Application de gestion des ressources humaines et de suivi des présences conçue pour isoler les données de plusieurs entreprises au sein d'une même plateforme.",
+      "works.nfcSolution": "Création d'entreprise, invitations par email, gestion des employés et catégories de travailleurs, tableau de bord RH et journal des présences.",
+      "works.labelNote": "Précision technique",
+      "works.nfcNote": "Le pointage NFC est actuellement simulé logiciellement (aucun terminal NFC physique n'est connecté).",
+      "works.nfcMock1": "Espaces entreprises isolés & invitations email",
+      "works.nfcMock2": "Journal des présences & catégories RH",
+      "works.immoMeta": "Full Lifecycle · Immobilier",
+      "works.immoSummary": "Plateforme de gestion immobilière centralisant annonces, utilisateurs, visites et contrats. Prise en charge complète de la modélisation à la supervision.",
+      "works.labelRole": "Rôle & Périmètre",
+      "works.immoRole": "Product Owner, Lead Developer, Full Stack & Backend, DevOps et gestion PostgreSQL (JWT avec rôles, tests, Docker, CI/CD).",
+      "works.brasilMeta": "Projet collaboratif · Multi-module",
+      "works.brasilStatus": "Déployé sur Render",
+      "works.brasilSummary": "Architecture multi-module partageant une base SQL commune (branches modelisation, java, csharp, symfony) : client C# ASP.NET MVC, ressources Java Console et espace manager Symfony.",
+      "works.brasilSolution": "Catalogue, commandes, retrait/livraison, paiement Wave / Orange Money, affectation des zones de livraison et statistiques journalières manager.",
+      "works.eduMeta": "Backend Python · CRM Éducatif",
+      "works.eduSummary": "Plateforme de gestion académique structurée avec Flask Blueprints : authentification, gestion des étudiants et tableau de bord statistique.",
+      "works.cicdMeta": "DevOps & Supervision",
+      "works.cicdSummary": "Automatisation complète build, tests et déploiement conteneurisé avec Docker, Jenkins et Kubernetes, couplée à une supervision Grafana & Prometheus.",
+      "works.linkGithub": "Code source GitHub",
+      "works.linkLive": "Démo en ligne",
+      "works.archiveTitle": "Travaux complémentaires",
+      "works.badwalletDesc": "Application mobile de portefeuille digital : consultation du solde, transferts, réception d'argent et historique des transactions.",
+      "works.netTitle": "Topologie Réseau & Supervision",
+      "works.netDesc": "Simulation d'infrastructures Cisco (VLAN, OSPF, sécurité, haute disponibilité) et déploiement de dashboards Zabbix / Grafana.",
+      "contact.eyebrow": "LET'S BUILD SOMETHING",
+      "contact.title": "Un projet en tête ? Construisons-le ensemble.",
+      "contact.lead": "Disponible pour échanger autour d'une opportunité Full Stack, d'une collaboration produit ou d'un projet web et mobile.",
+      "contact.copy": "Copier",
+      "contact.copied": "Copié",
+      "contact.phoneLabel": "Téléphone",
+      "contact.cvDownload": "Télécharger le CV (2026)",
+      "form.nameLabel": "Nom complet",
+      "form.namePlaceholder": "Votre nom",
+      "form.emailLabel": "Adresse email",
+      "form.emailPlaceholder": "vous@entreprise.com",
+      "form.subjectLabel": "Sujet",
+      "form.subjectPlaceholder": "Opportunité Full Stack / Projet",
+      "form.messageLabel": "Message",
+      "form.messagePlaceholder": "Parlez-moi de votre contexte...",
+      "form.submit": "Préparer l'envoi par email",
+      "form.errRequired": "Ce champ est requis.",
+      "form.errEmail": "Veuillez saisir une adresse email valide.",
+      "form.opened": "Client mail prêt avec votre message.",
+      "footer.role": "Full Stack Developer · Dakar, Sénégal",
+      "footer.top": "Haut de page",
+      "footer.copy": "© 2026 Mouhamet Thiam. Tous droits réservés."
+    },
+    en: {
+      "skip.link": "Skip to main content",
+      "doc.title": "Mouhamet Thiam — Full Stack Developer | Web, Mobile & Software Engineering",
+      "nav.aria": "Main navigation",
+      "nav.mobileAria": "Mobile navigation",
+      "nav.openMenu": "Open menu",
+      "nav.closeMenu": "Close menu",
+      "lang.aria": "Choose language",
+      "nav.menuLabel": "Navigation",
+      "nav.journey": "Journey",
+      "nav.experience": "Experience",
+      "nav.craft": "Craft",
+      "nav.works": "Projects",
+      "nav.contact": "Contact",
+      "hero.eyebrow": "INTRODUCTION — FULL STACK DEVELOPER",
+      "hero.title": "Business ideas turned into reliable digital products.",
+      "hero.subtitle": "Web · Mobile · PWA · Software Engineering",
+      "hero.desc": "Full Stack Developer in Dakar. Designing web, mobile, and PWA applications from specs to deployment.",
+      "hero.ctaProjects": "Explore projects",
+      "hero.ctaContact": "Get in touch",
+      "hero.ctaCv": "Download CV",
+      "hero.scrollCue": "Scroll to explore",
+      "hero.metaLocLabel": "Location",
+      "hero.metaLocVal": "Dakar, Senegal",
+      "hero.metaStatusLabel": "Status",
+      "hero.metaStatusVal": "Open to opportunities",
+      "hero.metaLangLabel": "Languages",
+      "hero.metaLangVal": "French · English · Wolof",
+      "journey.eyebrow": "THE JOURNEY",
+      "journey.title": "Software, systems & field progression.",
+      "journey.lead": "Academic foundations in software & networks, applied in production.",
+      "journey.certsTitle": "Cisco Certifications",
+      "journey.certCyber": "Cisco: Introduction to Cybersecurity",
+      "journey.certHacker": "Cisco: Ethical Hacker",
+      "journey.socialTitle": "Community & Workshops",
+      "journey.socialItems": "Humanitarian Project (Pouponnière de Médina) · « Build Your Business » Workshop (ISM)",
+      "journey.item1Period": "10/2026 — Present",
+      "journey.item1Title": "Software Developer Intern — Web & Mobile",
+      "journey.item1Org": "Kiki Traiteur · Dakar",
+      "journey.item1Desc": "Web, mobile, PWA applications and REST APIs.",
+      "journey.item2Period": "2024 — Present",
+      "journey.item2Title": "Bachelor's in Web & Mobile Development",
+      "journey.item2Desc": "Modern web architectures and mobile engineering.",
+      "journey.item3Title": "Bachelor's in Software Engineering, Networks & Systems",
+      "journey.item3Org": "ISM Dakar · Highest Honors",
+      "journey.item3Desc": "UML, OOP, SOLID, databases, Linux, and Cisco networking.",
+      "journey.item4Title": "L2 Baccalaureate",
+      "exp.eyebrow": "THE EXPERIENCE",
+      "exp.title": "Kiki Traiteur — Multi-domain engineering.",
+      "exp.role": "Developer Intern",
+      "exp.date": "October 2026 — Present · Dakar",
+      "exp.contextTitle": "Scope of work",
+      "exp.contextText": "Working across multiple technical domains (web, mobile, PWA, and backend) independently or in collaboration, driven by functional specs.",
+      "exp.hl1": "Functional spec analysis and technical adaptation.",
+      "exp.hl2": "Responsive web, mobile, and PWA interfaces.",
+      "exp.hl3": "REST APIs, backend logic, and functional testing.",
+      "exp.hl4": "Version control and collaboration via Git / GitHub.",
+      "exp.stackLabel": "Stack",
+      "exp.processTitle": "Delivery workflow",
+      "exp.step1Title": "Specification analysis",
+      "exp.step2Title": "Frontend development",
+      "exp.step3Title": "Backend development",
+      "exp.step4Title": "Deployment",
+      "exp.step5Title": "Feature testing",
+      "exp.step6Title": "Production release",
+      "craft.eyebrow": "THE CRAFT",
+      "craft.title": "Technical mastery anchored in real architectures.",
+      "craft.filterAll": "All domains",
+      "craft.filterMobile": "Mobile & PWA",
+      "craft.filterDb": "Databases",
+      "craft.filterDevops": "DevOps & Systems",
+      "craft.frontendDesc": "Reactive interfaces, modular architectures, and responsive design.",
+      "craft.backendDesc": "Secured REST APIs, multi-tenant architectures, and business logic.",
+      "craft.mobileDesc": "Cross-platform mobile apps, touch interfaces, and installable PWAs.",
+      "craft.dbDesc": "Relational modeling, shared schemas, and tenant data isolation.",
+      "craft.devopsDesc": "Containerization, CI/CD pipelines, monitoring, Linux, and networking.",
+      "craft.proofLabel": "Applied on:",
+      "works.eyebrow": "SELECTED WORKS",
+      "works.title": "Selected case studies: from design to operations.",
+      "works.filterAll": "All",
+      "works.filterDevops": "DevOps & Systems",
+      "works.mockupTag": "Illustrative mockup",
+      "works.lawtanMock1": "Rice sector catalogue · Orders",
+      "works.lawtanMock2": "Direct quote & redirection",
+      "works.lawtanMock3": "Order & quote management",
+      "works.lawtanMeta": "Agro-industry · Handover & evolution",
+      "works.lawtanStatus": "Completed",
+      "works.lawtanSummary": "Took over and expanded a digital platform for Senegal's rice sector: understanding an existing architecture and delivering new business modules.",
+      "works.labelProblem": "Problem & Objective",
+      "works.lawtanProblem": "Continue an existing codebase to provide a public showcase, a marketplace, and a streamlined quote request workflow.",
+      "works.labelSolution": "Solution & Features",
+      "works.lawtanSolution": "Public showcase, marketplace, ordering flow, WhatsApp-redirected quote requests, and corresponding admin back-office features.",
+      "works.nfcMeta": "HR SaaS · Multi-tenant",
+      "works.nfcStatus": "Simulated NFC",
+      "works.nfcSummary": "Human resources and attendance tracking application designed to isolate data for multiple companies within a single platform.",
+      "works.nfcSolution": "Company onboarding, email invitations, employee & worker category management, HR dashboard, and attendance logs.",
+      "works.labelNote": "Technical note",
+      "works.nfcNote": "NFC check-in is currently simulated in software (no physical NFC hardware terminal is connected).",
+      "works.nfcMock1": "Isolated company tenants & email invites",
+      "works.nfcMock2": "Attendance logs & HR categories",
+      "works.immoMeta": "Full Lifecycle · Real Estate",
+      "works.immoSummary": "Real-estate management platform centralizing listings, users, visits, and contracts. Owned end-to-end from modeling to monitoring.",
+      "works.labelRole": "Role & Scope",
+      "works.immoRole": "Product Owner, Lead Developer, Full Stack & Backend, DevOps and PostgreSQL management (role-based JWT, testing, Docker, CI/CD).",
+      "works.brasilMeta": "Collaborative · Multi-module",
+      "works.brasilStatus": "Live on Render",
+      "works.brasilSummary": "Multi-module architecture sharing a unified SQL database (modelisation, java, csharp, symfony branches): C# ASP.NET MVC client, Java Console resources, and Symfony manager portal.",
+      "works.brasilSolution": "Catalogue, orders, pickup/delivery modes, Wave / Orange Money payments, delivery zone assignment, and daily manager analytics.",
+      "works.eduMeta": "Python Backend · EdTech CRM",
+      "works.eduSummary": "Academic management platform structured with Flask Blueprints: authentication, student management, and statistical dashboard.",
+      "works.cicdMeta": "DevOps & Monitoring",
+      "works.cicdSummary": "End-to-end automated build, test, and containerized deployment pipeline using Docker, Jenkins, and Kubernetes with Grafana & Prometheus.",
+      "works.linkGithub": "GitHub source",
+      "works.linkLive": "Live demo",
+      "works.archiveTitle": "Complementary work",
+      "works.badwalletDesc": "Digital wallet mobile app built with Flutter: balance check, transfers, incoming funds, and transaction history.",
+      "works.netTitle": "Network Topology & Monitoring",
+      "works.netDesc": "Cisco network simulations (VLAN, OSPF, security, high availability) and Zabbix / Grafana monitoring dashboards.",
+      "contact.eyebrow": "LET'S BUILD SOMETHING",
+      "contact.title": "Have a project in mind? Let's build it.",
+      "contact.lead": "Available to discuss Full Stack roles, product collaborations, or web and mobile engineering projects.",
+      "contact.copy": "Copy",
+      "contact.copied": "Copied",
+      "contact.phoneLabel": "Phone",
+      "contact.cvDownload": "Download CV (2026)",
+      "form.nameLabel": "Full name",
+      "form.namePlaceholder": "Your name",
+      "form.emailLabel": "Email address",
+      "form.emailPlaceholder": "you@company.com",
+      "form.subjectLabel": "Subject",
+      "form.subjectPlaceholder": "Full Stack role / Project",
+      "form.messageLabel": "Message",
+      "form.messagePlaceholder": "Tell me about your context...",
+      "form.submit": "Prepare email",
+      "form.errRequired": "This field is required.",
+      "form.errEmail": "Please enter a valid email address.",
+      "form.opened": "Mail client ready with your message.",
+      "footer.role": "Full Stack Developer · Dakar, Senegal",
+      "footer.top": "Back to top",
+      "footer.copy": "© 2026 Mouhamet Thiam. All rights reserved."
+    }
   };
+
+  var currentLang = "fr";
+  try {
+    currentLang = window.localStorage.getItem("portfolio-language") === "en" ? "en" : "fr";
+  } catch (e) { /* storage unavailable */ }
+
+  function t(key) {
+    return (I18N[currentLang] && I18N[currentLang][key]) || (I18N.fr && I18N.fr[key]) || "";
+  }
+
+  function applyLanguage(lang) {
+    currentLang = lang === "en" ? "en" : "fr";
+    document.documentElement.lang = currentLang;
+    if (t("doc.title")) document.title = t("doc.title");
+
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+      var val = t(el.getAttribute("data-i18n"));
+      if (val) el.textContent = val;
+    });
+
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
+      var val = t(el.getAttribute("data-i18n-placeholder"));
+      if (val) el.setAttribute("placeholder", val);
+    });
+
+    document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
+      var val = t(el.getAttribute("data-i18n-aria"));
+      if (val) el.setAttribute("aria-label", val);
+    });
+
+    document.querySelectorAll("[data-language]").forEach(function (btn) {
+      btn.setAttribute("aria-pressed", btn.getAttribute("data-language") === currentLang ? "true" : "false");
+    });
+
+    try { window.localStorage.setItem("portfolio-language", currentLang); } catch (e) { /* ignore */ }
+  }
+
+  document.querySelectorAll("[data-language]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      applyLanguage(btn.getAttribute("data-language"));
+    });
+  });
+  applyLanguage(currentLang);
+
+  /* ---------- 2. MOTION & PREFERENCES ---------- */
+  var motionLevel = document.documentElement.dataset.motion || "moderate";
   var motionQuery = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
-  var desktopQuery = window.matchMedia ? window.matchMedia("(min-width: 768px)") : null;
+  var effectiveMotion = (motionQuery && motionQuery.matches) ? "none" : motionLevel;
+
+  /* ---------- 3. ACCESSIBLE MOBILE DRAWER ---------- */
   var drawer = document.getElementById("navDrawer");
-  var burgerButton = document.getElementById("burgerBtn");
+  var burgerBtn = document.getElementById("burgerBtn");
   var drawerClose = document.getElementById("drawerClose");
   var overlay = document.getElementById("navOverlay");
   var iconOpen = document.getElementById("burgerIconOpen");
   var iconClose = document.getElementById("burgerIconClose");
-  var pageHeader = document.querySelector(".site-header");
-  var main = document.querySelector("main");
-  var pageFooter = document.querySelector(".footer");
-  var lastFocusedElement = null;
-  var pageInertState = [];
+  var pageTargets = [document.querySelector(".site-header"), document.querySelector("main"), document.querySelector(".footer")].filter(Boolean);
+  var lastFocused = null;
 
-  function prefersReducedMotion() {
-    return Boolean(motionQuery && motionQuery.matches);
+  function setInert(el, state) {
+    if (!el) return;
+    el.inert = state;
+    if (state) el.setAttribute("inert", "");
+    else el.removeAttribute("inert");
   }
 
-  function menuLabel(french, english) {
-    return document.documentElement.lang === "en" ? english : french;
-  }
-
-  function scrollToId(id) {
-    var element = id && document.getElementById(id);
-    if (!element) return false;
-    element.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth", block: "start" });
-    return true;
-  }
-
-  function setInert(element, value) {
-    if (!element) return;
-    element.inert = value;
-    if (value) element.setAttribute("inert", "");
-    else element.removeAttribute("inert");
-  }
-
-  function getPageInertTargets() {
-    return [pageHeader, main, pageFooter].filter(Boolean);
-  }
-
-  function getDrawerFocusableElements() {
+  function getDrawerFocusables() {
     if (!drawer) return [];
-    return Array.prototype.slice.call(drawer.querySelectorAll(
-      'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
-    )).filter(function (element) {
-      return element.getAttribute("aria-hidden") !== "true" && element.offsetParent !== null;
-    });
+    return Array.prototype.slice.call(drawer.querySelectorAll('a[href], button:not([disabled])'));
   }
 
-  function closeDrawer(restoreFocus) {
-    if (!drawer) return;
+  function openDrawer() {
+    if (!drawer || !burgerBtn) return;
+    lastFocused = document.activeElement;
+    pageTargets.forEach(function (el) { setInert(el, true); });
+    setInert(drawer, false);
+    drawer.setAttribute("aria-hidden", "false");
+    drawer.classList.add("is-open");
+    if (overlay) overlay.classList.add("is-open");
+    document.body.classList.add("menu-open");
+    burgerBtn.setAttribute("aria-expanded", "true");
+    if (iconOpen) iconOpen.classList.add("is-hidden");
+    if (iconClose) iconClose.classList.remove("is-hidden");
+    var focusables = getDrawerFocusables();
+    if (focusables.length) focusables[0].focus();
+  }
+
+  function closeDrawer(restore) {
+    if (!drawer || !drawer.classList.contains("is-open")) return;
     drawer.classList.remove("is-open");
     if (overlay) overlay.classList.remove("is-open");
     drawer.setAttribute("aria-hidden", "true");
     setInert(drawer, true);
-    pageInertState.forEach(function (entry) { setInert(entry.element, entry.wasInert); });
-    pageInertState = [];
-    if (burgerButton) {
-      burgerButton.setAttribute("aria-expanded", "false");
-      burgerButton.setAttribute("aria-label", menuLabel("Ouvrir le menu", "Open menu"));
-    }
+    pageTargets.forEach(function (el) { setInert(el, false); });
+    document.body.classList.remove("menu-open");
+    if (burgerBtn) burgerBtn.setAttribute("aria-expanded", "false");
     if (iconOpen) iconOpen.classList.remove("is-hidden");
     if (iconClose) iconClose.classList.add("is-hidden");
-    if (document.body) document.body.classList.remove("menu-open");
-    if (restoreFocus !== false && lastFocusedElement && document.contains(lastFocusedElement)) {
-      lastFocusedElement.focus();
-    }
-    lastFocusedElement = null;
+    if (restore !== false && lastFocused && document.contains(lastFocused)) lastFocused.focus();
   }
 
-  function openDrawer() {
-    if (!drawer || !burgerButton || drawer.classList.contains("is-open")) return;
-    lastFocusedElement = document.activeElement === burgerButton ? burgerButton : burgerButton;
-    pageInertState = getPageInertTargets().map(function (element) {
-      return { element: element, wasInert: element.inert || element.hasAttribute("inert") };
-    });
-    pageInertState.forEach(function (entry) { setInert(entry.element, true); });
-    drawer.classList.add("is-open");
-    if (overlay) overlay.classList.add("is-open");
-    drawer.setAttribute("aria-hidden", "false");
-    setInert(drawer, false);
-    burgerButton.setAttribute("aria-expanded", "true");
-    burgerButton.setAttribute("aria-label", menuLabel("Fermer le menu", "Close menu"));
-    if (document.body) document.body.classList.add("menu-open");
-    if (iconOpen) iconOpen.classList.add("is-hidden");
-    if (iconClose) iconClose.classList.remove("is-hidden");
-    var focusableElements = getDrawerFocusableElements();
-    if (focusableElements.length) focusableElements[0].focus();
-  }
-
-  if (drawer) {
-    drawer.setAttribute("aria-hidden", "true");
-    setInert(drawer, true);
-  }
-  if (burgerButton && drawer) {
-    burgerButton.setAttribute("aria-controls", drawer.id);
-    burgerButton.addEventListener("click", function () {
-      if (drawer.classList.contains("is-open")) closeDrawer();
+  if (burgerBtn) {
+    burgerBtn.addEventListener("click", function () {
+      if (drawer && drawer.classList.contains("is-open")) closeDrawer();
       else openDrawer();
     });
   }
-  if (overlay) overlay.addEventListener("click", function () { closeDrawer(); });
   if (drawerClose) drawerClose.addEventListener("click", function () { closeDrawer(); });
+  if (overlay) overlay.addEventListener("click", function () { closeDrawer(); });
 
-  function closeDrawerOnDesktop(event) {
-    if (!event.matches || !drawer || !drawer.classList.contains("is-open")) return;
-    var focusWasInDrawer = drawer.contains(document.activeElement);
-    closeDrawer(false);
-    if (focusWasInDrawer) {
-      var logo = document.querySelector(".nav__logo");
-      if (logo) logo.focus();
-    }
-  }
-
-  if (desktopQuery) {
-    if (desktopQuery.addEventListener) desktopQuery.addEventListener("change", closeDrawerOnDesktop);
-    else if (desktopQuery.addListener) desktopQuery.addListener(closeDrawerOnDesktop);
-  }
-
-  document.addEventListener("click", function (event) {
-    var link = event.target.closest && event.target.closest('a[href^="#"]');
-    if (!link) return;
-    var href = link.getAttribute("href") || "";
-    var targetId = link.getAttribute("data-nav") || link.getAttribute("data-goto") || href.slice(1);
-    var wasOpen = drawer && drawer.classList.contains("is-open");
-    if (wasOpen) closeDrawer();
-    if (scrollToId(targetId)) {
-      event.preventDefault();
-      if (href && href !== window.location.hash) {
-        window.history.pushState({}, "", href);
-      }
-    }
-  });
-
-  document.addEventListener("keydown", function (event) {
+  document.addEventListener("keydown", function (e) {
     if (!drawer || !drawer.classList.contains("is-open")) return;
-    if (event.key === "Escape") {
-      event.preventDefault();
-      closeDrawer();
-      return;
-    }
-    if (event.key !== "Tab") return;
-    var focusableElements = getDrawerFocusableElements();
-    if (!focusableElements.length) return;
-    var firstElement = focusableElements[0];
-    var lastElement = focusableElements[focusableElements.length - 1];
-    if (event.shiftKey && (document.activeElement === firstElement || !drawer.contains(document.activeElement))) {
-      event.preventDefault();
-      lastElement.focus();
-    } else if (!event.shiftKey && (document.activeElement === lastElement || !drawer.contains(document.activeElement))) {
-      event.preventDefault();
-      firstElement.focus();
+    if (e.key === "Escape") { e.preventDefault(); closeDrawer(); return; }
+    if (e.key === "Tab") {
+      var items = getDrawerFocusables();
+      if (!items.length) return;
+      var first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     }
   });
 
-  /* ---------- SCROLL STATE ---------- */
-  var nav = document.getElementById("siteNav");
-  var sectionIds = ["projets", "competences", "parcours", "contact"];
-  var navLinks = document.querySelectorAll("[data-nav]");
-  var scrollFrame = null;
-
-  function setActiveSection(id) {
-    navLinks.forEach(function (link) {
-      link.classList.toggle("is-active", link.getAttribute("data-nav") === id);
-    });
-  }
-
-  function updateScrollState() {
-    scrollFrame = null;
-    if (nav) nav.classList.toggle("is-scrolled", window.scrollY > 40);
-    var currentSection = null;
-    sectionIds.forEach(function (sectionId) {
-      var section = document.getElementById(sectionId);
-      if (section && window.scrollY >= section.offsetTop - 140) currentSection = sectionId;
-    });
-    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 16) {
-      currentSection = sectionIds[sectionIds.length - 1];
+  document.addEventListener("click", function (e) {
+    var link = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!link) return;
+    var targetId = link.getAttribute("href").slice(1);
+    var target = targetId && document.getElementById(targetId);
+    if (target) {
+      e.preventDefault();
+      closeDrawer(false);
+      target.scrollIntoView({ behavior: effectiveMotion === "none" ? "auto" : "smooth", block: "start" });
+      if (window.history && window.history.pushState) window.history.pushState(null, "", "#" + targetId);
     }
-    setActiveSection(currentSection);
+  });
+
+  /* ---------- 4. SCROLL PROGRESS & ACTIVE NAV ---------- */
+  var nav = document.getElementById("siteNav");
+  var progressBar = document.getElementById("scrollProgress");
+  var backToTopBtn = document.getElementById("backToTop");
+  var footerEl = document.querySelector(".footer");
+  var sectionIds = ["parcours", "experience", "competences", "projets", "contact"];
+  var navLinks = document.querySelectorAll("[data-nav]");
+  var rafPending = false;
+
+  function onScrollUpdate() {
+    rafPending = false;
+    var scrollTop = window.scrollY || window.pageYOffset;
+    if (nav) nav.classList.toggle("is-scrolled", scrollTop > 32);
+
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (progressBar && docHeight > 0) {
+      progressBar.style.transform = "scaleX(" + Math.min(1, Math.max(0, scrollTop / docHeight)) + ")";
+    }
+
+    var current = null;
+    sectionIds.forEach(function (id) {
+      var sec = document.getElementById(id);
+      if (sec && scrollTop >= sec.offsetTop - 160) current = id;
+    });
+    if (scrollTop + window.innerHeight >= document.documentElement.scrollHeight - 24) {
+      current = sectionIds[sectionIds.length - 1];
+    }
+    navLinks.forEach(function (a) {
+      a.classList.toggle("is-active", a.getAttribute("data-nav") === current);
+    });
+
+    if (backToTopBtn) {
+      var footerVisible = footerEl ? footerEl.getBoundingClientRect().top < (window.innerHeight || 800) : false;
+      backToTopBtn.classList.toggle("is-visible", scrollTop > 360 && !footerVisible);
+    }
+
+    // Acte 02: Progress bar starting at top (scaleY: 0 -> 1) + synchronized marker reveals
+    var tEl = document.getElementById("journeyTimeline");
+    var tBar = document.getElementById("timelineProgress");
+    if (tEl && tBar && effectiveMotion !== "none") {
+      var rect = tEl.getBoundingClientRect();
+      var vh = window.innerHeight || 800;
+      var startY = vh * 0.65;
+      var totalSpan = rect.height || 1;
+      var raw = (startY - rect.top) / totalSpan;
+      var progress = Math.min(1, Math.max(0, raw));
+      tBar.style.transform = "scaleY(" + progress.toFixed(4) + ")";
+
+      document.querySelectorAll("[data-timeline-item]").forEach(function (item) {
+        var iRect = item.getBoundingClientRect();
+        if (iRect.top <= vh * 0.58) {
+          item.classList.add("is-reached");
+        } else {
+          item.classList.remove("is-reached");
+        }
+      });
+    }
   }
 
   window.addEventListener("scroll", function () {
-    if (scrollFrame === null) scrollFrame = requestFrame(updateScrollState);
+    if (!rafPending) {
+      rafPending = true;
+      window.requestAnimationFrame(onScrollUpdate);
+    }
   }, { passive: true });
-  updateScrollState();
+  onScrollUpdate();
 
-  /* ---------- REVEAL ON SCROLL ---------- */
-  var revealElements = document.querySelectorAll(".reveal");
-  function showReveal(element) { element.classList.add("is-visible"); }
-  if (prefersReducedMotion() || !("IntersectionObserver" in window)) {
-    revealElements.forEach(showReveal);
-  } else {
-    var observer = new IntersectionObserver(function (entries) {
+  /* ---------- 5. INTERACTIVE FILTERS (CRAFT & WORKS) ---------- */
+  function setupFilter(btnAttr, itemAttr) {
+    var buttons = document.querySelectorAll("[" + btnAttr + "]");
+    var items = document.querySelectorAll("[" + itemAttr + "]");
+    buttons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var filter = btn.getAttribute(btnAttr);
+        buttons.forEach(function (b) {
+          var active = b === btn;
+          b.classList.toggle("is-active", active);
+          b.setAttribute("aria-selected", active ? "true" : "false");
+        });
+        items.forEach(function (item) {
+          var show = filter === "all" || item.getAttribute(itemAttr) === filter;
+          item.classList.toggle("is-hidden", !show);
+        });
+        if (itemAttr === "data-work-cat" && typeof window.rebuildProjectsTrack === "function") {
+          window.rebuildProjectsTrack();
+        }
+        if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+      });
+    });
+  }
+  setupFilter("data-craft-filter", "data-craft-cat");
+  setupFilter("data-work-filter", "data-work-cat");
+
+  /* ---------- 6. COPY EMAIL & CONTACT FORM ---------- */
+  var copyBtn = document.getElementById("copyEmailBtn");
+  if (copyBtn && navigator.clipboard) {
+    copyBtn.addEventListener("click", function () {
+      var text = copyBtn.getAttribute("data-copy");
+      navigator.clipboard.writeText(text).then(function () {
+        var span = copyBtn.querySelector("span");
+        if (span) {
+          span.textContent = t("contact.copied");
+          window.setTimeout(function () { span.textContent = t("contact.copy"); }, 2000);
+        }
+      }).catch(function () { /* clipboard denied */ });
+    });
+  }
+
+  var contactForm = document.getElementById("contactForm");
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var fields = [
+        { el: document.getElementById("contactName"), err: document.getElementById("errorName"), type: "text" },
+        { el: document.getElementById("contactEmail"), err: document.getElementById("errorEmail"), type: "email" },
+        { el: document.getElementById("contactSubject"), err: document.getElementById("errorSubject"), type: "text" },
+        { el: document.getElementById("contactMessage"), err: document.getElementById("errorMessage"), type: "text" }
+      ];
+      var valid = true;
+      fields.forEach(function (f) {
+        var val = f.el.value.trim();
+        var msg = "";
+        if (!val) msg = t("form.errRequired");
+        else if (f.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) msg = t("form.errEmail");
+        f.err.textContent = msg;
+        f.el.setAttribute("aria-invalid", msg ? "true" : "false");
+        if (msg) valid = false;
+      });
+      if (!valid) return;
+
+      var mailto = "mailto:mouhamethiam7@gmail.com?subject=" +
+        encodeURIComponent(fields[2].el.value.trim()) +
+        "&body=" + encodeURIComponent(fields[0].el.value.trim() + " (" + fields[1].el.value.trim() + ")\n\n" + fields[3].el.value.trim());
+      window.location.href = mailto;
+      var status = document.getElementById("formStatus");
+      if (status) status.textContent = t("form.opened");
+    });
+  }
+
+  /* ---------- 7. MOTION DESIGN ENGINE (GSAP + FALLBACK) ---------- */
+  var reveals = document.querySelectorAll("[data-reveal]");
+  var timelineItems = document.querySelectorAll("[data-timeline-item]");
+  var processSteps = document.querySelectorAll("#processSteps .process-step");
+
+  function showAllImmediately() {
+    reveals.forEach(function (el) { el.classList.add("is-visible"); });
+    timelineItems.forEach(function (el) { el.classList.add("is-reached"); });
+    processSteps.forEach(function (el) { el.classList.add("is-entered", "is-active"); });
+  }
+
+  if (effectiveMotion === "none") {
+    showAllImmediately();
+    return;
+  }
+
+  // Native IntersectionObserver for [data-reveal] (always active so sections reveal progressively even without GSAP CDN)
+  if ("IntersectionObserver" in window) {
+    var revealObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          showReveal(entry.target);
-          observer.unobserve(entry.target);
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: "0px 0px 80px 0px" });
-    revealElements.forEach(function (element) { observer.observe(element); });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    reveals.forEach(function (el) { revealObserver.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add("is-visible"); });
+  }
+
+  // Acte 03: Diagonal bottom-right -> top-left pipeline entry (works with or without GSAP)
+  var processContainer = document.getElementById("processSteps");
+  if (processContainer && processSteps.length && "IntersectionObserver" in window) {
+    var pipeObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        processSteps.forEach(function (step, idx) {
+          step.style.transitionDelay = (idx * 110) + "ms";
+          step.classList.add("is-entered");
+          window.setTimeout(function () {
+            step.classList.add("is-active");
+          }, 260 + idx * 110);
+        });
+        pipeObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.18 });
+    pipeObserver.observe(processContainer);
+  } else {
+    processSteps.forEach(function (el) { el.classList.add("is-entered", "is-active"); });
+  }
+
+  if (window.gsap && window.ScrollTrigger) {
+    window.gsap.registerPlugin(window.ScrollTrigger);
+
+    // Hero kinetic entrance (< 950ms, clip-path + line draw)
+    var heroTl = window.gsap.timeline({ defaults: { ease: "power4.out" } });
+    heroTl.from("[data-hero-anim]", {
+      y: 28,
+      opacity: 0,
+      clipPath: "inset(0 0 100% 0)",
+      duration: 0.8,
+      stagger: 0.09,
+      clearProps: "transform,opacity,clipPath"
+    }).from(".hero__rule", {
+      scaleX: 0,
+      transformOrigin: "left center",
+      duration: 0.7
+    }, "-=0.45");
+
+    // Acte 04: Craft Matrix cascade
+    var craftRows = document.querySelectorAll(".craft-row");
+    if (craftRows.length) {
+      window.gsap.from(craftRows, {
+        y: 20,
+        opacity: 0,
+        duration: 0.55,
+        stagger: 0.08,
+        ease: "power2.out",
+        clearProps: "transform,opacity",
+        scrollTrigger: {
+          trigger: "#craftMatrix",
+          start: "top 82%",
+          once: true
+        }
+      });
+    }
+
+    // Acte 05: Horizontal Sticky Track + Difference-Blend Tick Ruler
+    var projectsStage = document.getElementById("projectsStage");
+    var projectsRail = document.getElementById("projectsRail");
+    var rulerTicks = document.getElementById("projectsRulerTicks");
+    var rulerNeedle = document.getElementById("projectsRulerNeedle");
+    var rulerCounter = document.getElementById("projectsRulerCounter");
+    var projectsTrigger = null;
+
+    if (rulerTicks && !rulerTicks.children.length) {
+      for (var ti = 0; ti <= 24; ti++) {
+        var tick = document.createElement("span");
+        tick.className = "projects-ruler__tick" + (ti % 4 === 0 ? " projects-ruler__tick--major" : "");
+        rulerTicks.appendChild(tick);
+      }
+    }
+
+    function padTwo(n) { return n < 10 ? "0" + n : String(n); }
+
+    window.rebuildProjectsTrack = function () {
+      if (projectsTrigger) {
+        projectsTrigger.kill();
+        projectsTrigger = null;
+      }
+      if (!projectsStage || !projectsRail) return;
+      window.gsap.set(projectsRail, { x: 0 });
+
+      var visibleStops = Array.prototype.filter.call(
+        projectsRail.querySelectorAll(".project-stop"),
+        function (el) { return !el.classList.contains("is-hidden"); }
+      );
+      var totalCount = visibleStops.length || 1;
+      if (rulerCounter) rulerCounter.textContent = "01 / " + padTwo(totalCount);
+      if (rulerNeedle) rulerNeedle.style.transform = "translateX(0px)";
+
+      if (!window.matchMedia || !window.matchMedia("(min-width: 768px)").matches) return;
+
+      var maxScrollX = Math.max(0, projectsRail.scrollWidth - projectsStage.clientWidth);
+      if (maxScrollX <= 0) return;
+
+      var tween = window.gsap.to(projectsRail, {
+        x: -maxScrollX,
+        ease: "none",
+        scrollTrigger: {
+          trigger: projectsStage,
+          start: "top 72px",
+          end: function () { return "+=" + maxScrollX; },
+          pin: true,
+          scrub: true,
+          fastScrollEnd: true,
+          preventOverlaps: true,
+          invalidateOnRefresh: true,
+          onUpdate: function (self) {
+            var trackEl = rulerNeedle ? rulerNeedle.parentElement : null;
+            if (rulerNeedle && trackEl) {
+              var travel = Math.max(0, trackEl.clientWidth - rulerNeedle.offsetWidth);
+              rulerNeedle.style.transform = "translateX(" + (self.progress * travel).toFixed(1) + "px)";
+            }
+            if (rulerCounter) {
+              var idx = Math.min(totalCount, Math.max(1, Math.round(self.progress * (totalCount - 1)) + 1));
+              rulerCounter.textContent = padTwo(idx) + " / " + padTwo(totalCount);
+            }
+          }
+        }
+      });
+      projectsTrigger = tween.scrollTrigger;
+    };
+
+    var rebuildProjectsTrack = window.rebuildProjectsTrack;
+    rebuildProjectsTrack();
+
+    // Keyboard operability for horizontal stops
+    if (projectsRail) {
+      projectsRail.querySelectorAll(".project-stop").forEach(function (stop) {
+        stop.addEventListener("focus", function () {
+          if (!projectsTrigger || !window.matchMedia("(min-width: 768px)").matches) return;
+          var visibleStops = Array.prototype.filter.call(
+            projectsRail.querySelectorAll(".project-stop"),
+            function (el) { return !el.classList.contains("is-hidden"); }
+          );
+          var idx = visibleStops.indexOf(stop);
+          if (idx < 0 || visibleStops.length <= 1) return;
+          var ratio = idx / (visibleStops.length - 1);
+          var targetScroll = projectsTrigger.start + ratio * (projectsTrigger.end - projectsTrigger.start);
+          window.scrollTo({ top: targetScroll, behavior: "smooth" });
+        });
+      });
+    }
+  } else if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          entry.target.classList.add("is-reached");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -30px 0px" });
+    reveals.forEach(function (el) { io.observe(el); });
+    timelineItems.forEach(function (el) { io.observe(el); });
+  } else {
+    showAllImmediately();
+  }
+
+  /* ---------- 8. DESKTOP INTERACTIONS (POINTER: FINE ONLY) ---------- */
+  var finePointer = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  if (finePointer && effectiveMotion === "high") {
+    document.querySelectorAll(".magnetic").forEach(function (btn) {
+      var leaveTimer = null;
+
+      btn.addEventListener("mousemove", function (e) {
+        if (leaveTimer) {
+          window.clearTimeout(leaveTimer);
+          leaveTimer = null;
+        }
+        var rect = btn.getBoundingClientRect();
+        var dx = Math.max(-20, Math.min(20, (e.clientX - (rect.left + rect.width / 2)) * 0.45));
+        var dy = Math.max(-14, Math.min(14, (e.clientY - (rect.top + rect.height / 2)) * 0.45));
+        if (window.gsap) {
+          window.gsap.to(btn, { x: dx, y: dy, duration: 0.2, ease: "power2.out", overwrite: "auto" });
+        } else {
+          btn.style.transition = "transform 80ms linear";
+          btn.style.transform = "translate3d(" + dx.toFixed(1) + "px, " + dy.toFixed(1) + "px, 0)";
+        }
+      });
+
+      btn.addEventListener("mouseleave", function (e) {
+        var rect = btn.getBoundingClientRect();
+        var ex = Math.max(-24, Math.min(24, (e.clientX - (rect.left + rect.width / 2)) * 0.55));
+        var ey = Math.max(-18, Math.min(18, (e.clientY - (rect.top + rect.height / 2)) * 0.55));
+
+        if (window.gsap) {
+          var tl = window.gsap.timeline({ overwrite: "auto" });
+          tl.to(btn, { x: ex, y: ey, duration: 0.12, ease: "power2.out" })
+            .to(btn, { x: 0, y: 0, duration: 0.55, ease: "elastic.out(1, 0.38)" });
+        } else {
+          btn.style.transition = "transform 110ms ease-out";
+          btn.style.transform = "translate3d(" + ex.toFixed(1) + "px, " + ey.toFixed(1) + "px, 0)";
+          leaveTimer = window.setTimeout(function () {
+            btn.style.transition = "transform 450ms cubic-bezier(0.34, 1.56, 0.64, 1)";
+            btn.style.transform = "translate3d(0, 0, 0)";
+          }, 110);
+        }
+      });
+    });
+
+    var cursor = document.getElementById("customCursor");
+    var cursorLabel = document.getElementById("customCursorLabel");
+    if (cursor && cursorLabel) {
+      var xTo = window.gsap ? window.gsap.quickTo(cursor, "left", { duration: 0.16, ease: "power3" }) : null;
+      var yTo = window.gsap ? window.gsap.quickTo(cursor, "top", { duration: 0.16, ease: "power3" }) : null;
+
+      document.addEventListener("mousemove", function (e) {
+        cursor.classList.add("is-visible");
+        if (xTo && yTo) {
+          xTo(e.clientX);
+          yTo(e.clientY);
+        } else {
+          cursor.style.left = e.clientX + "px";
+          cursor.style.top = e.clientY + "px";
+        }
+      }, { passive: true });
+      document.addEventListener("mouseleave", function () { cursor.classList.remove("is-visible"); });
+
+      document.querySelectorAll("[data-cursor]").forEach(function (el) {
+        el.addEventListener("mouseenter", function () {
+          cursor.classList.add("is-badge");
+          cursorLabel.textContent = el.getAttribute("data-cursor");
+        });
+        el.addEventListener("mouseleave", function () {
+          cursor.classList.remove("is-badge");
+          cursorLabel.textContent = "";
+        });
+      });
+    }
   }
 })();
