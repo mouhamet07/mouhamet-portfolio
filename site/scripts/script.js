@@ -471,10 +471,10 @@
       backToTopBtn.classList.toggle("is-visible", scrollTop > 360 && !footerVisible);
     }
 
-    // Hero portrait scroll parallax (image moves inside fixed frame)
+    // Hero portrait scroll parallax (image moves inside fixed frame without exposing background)
     var heroPortraitImg = document.getElementById("heroPortraitImg");
     if (heroPortraitImg && effectiveMotion !== "none") {
-      var imgShift = Math.max(-42, Math.min(0, -scrollTop * 0.14));
+      var imgShift = Math.max(-28, Math.min(0, -scrollTop * 0.12));
       heroPortraitImg.style.transform = "translate3d(0, " + imgShift.toFixed(1) + "px, 0)";
     }
 

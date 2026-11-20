@@ -505,7 +505,7 @@ textarea:focus-visible {
   width: 146px;
   height: 188px;
   clip-path: polygon(22% 0%, 100% 0%, 100% 76%, 78% 100%, 0% 100%, 0% 24%);
-  background: linear-gradient(145deg, var(--color-accent) 0%, #1d5886 100%);
+  background: var(--color-paper-deep);
   overflow: hidden;
 }
 @media (min-width: 520px) {
@@ -522,7 +522,7 @@ textarea:focus-visible {
 }
 .hero__portrait img {
   width: 100%;
-  height: 118%;
+  height: 126%;
   object-fit: cover;
   object-position: center top;
   display: block;
@@ -557,7 +557,7 @@ textarea:focus-visible {
 }
 .hero__actions {
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
+  grid-template-columns: 1.5fr 1fr;
   gap: 10px;
 }
 @media (min-width: 520px) {
@@ -570,8 +570,9 @@ textarea:focus-visible {
 @media (max-width: 519px) {
   .hero__actions .btn {
     padding: 10px 10px;
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     gap: 6px;
+    white-space: nowrap;
   }
 }
 .hero__meta {
