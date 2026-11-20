@@ -40,7 +40,10 @@
       "journey.certCyber": "Cisco: Introduction à la cybersécurité",
       "journey.certHacker": "Cisco: Hacker éthique",
       "journey.socialTitle": "Engagements & Ateliers",
-      "journey.socialItems": "Projet Humanitaire (Pouponnière de Médina) · Atelier « Build Your Business » (ISM)",
+      "journey.coachTitle": "Coach & Jury — Semaines d'Entrepreneuriat (Groupe ISM)",
+      "journey.coachDesc": "Accompagnement des étudiants (thème, livrables, pitch), sélection des groupes et jury de demi-finale.",
+      "journey.socialHumanitarian": "Projet Humanitaire (Pouponnière de Médina)",
+      "journey.socialWorkshop": "Atelier « Build Your Business » (ISM)",
       "journey.item1Period": "10/2026 — Aujourd'hui",
       "journey.item1Title": "Stagiaire développeur — Web & Mobile",
       "journey.item1Org": "Kiki Traiteur · Dakar",
@@ -98,18 +101,19 @@
       "works.labelSolution": "Solution & Fonctionnalités",
       "works.lawtanSolution": "Site vitrine public, marketplace, tunnel de commande, demandes de devis avec redirection WhatsApp et fonctionnalités back-office administrateur.",
       "works.nfcMeta": "SaaS RH · Multi-tenant",
-      "works.nfcStatus": "NFC Simulé",
+      "works.nfcStatus": "Web NFC · Terminaux",
       "works.nfcSummary": "Application de gestion des ressources humaines et de suivi des présences conçue pour isoler les données de plusieurs entreprises au sein d'une même plateforme.",
       "works.nfcSolution": "Création d'entreprise, invitations par email, gestion des employés et catégories de travailleurs, tableau de bord RH et journal des présences.",
       "works.labelNote": "Précision technique",
-      "works.nfcNote": "Le pointage NFC est actuellement simulé logiciellement (aucun terminal NFC physique n'est connecté).",
+      "works.nfcNote": "Lecture NFC opérationnelle via Web NFC Reader, avec support d'ajout et de connexion de terminaux dédiés.",
       "works.nfcMock1": "Espaces entreprises isolés & invitations email",
       "works.nfcMock2": "Journal des présences & catégories RH",
       "works.immoMeta": "Full Lifecycle · Immobilier",
       "works.immoSummary": "Plateforme de gestion immobilière centralisant annonces, utilisateurs, visites et contrats. Prise en charge complète de la modélisation à la supervision.",
       "works.labelRole": "Rôle & Périmètre",
       "works.immoRole": "Product Owner, Lead Developer, Full Stack & Backend, DevOps et gestion PostgreSQL (JWT avec rôles, tests, Docker, CI/CD).",
-      "works.brasilMeta": "Projet collaboratif · Multi-module",
+      "works.brasilTitle": "Gestion Resto",
+      "works.brasilMeta": "Multi-module",
       "works.brasilStatus": "Déployé sur Render",
       "works.brasilSummary": "Architecture multi-module partageant une base SQL commune (branches modelisation, java, csharp, symfony) : client C# ASP.NET MVC, ressources Java Console et espace manager Symfony.",
       "works.brasilSolution": "Catalogue, commandes, retrait/livraison, paiement Wave / Orange Money, affectation des zones de livraison et statistiques journalières manager.",
@@ -129,7 +133,9 @@
       "contact.copy": "Copier",
       "contact.copied": "Copié",
       "contact.phoneLabel": "Téléphone",
-      "contact.cvDownload": "Télécharger le CV (2026)",
+      "contact.cvDownload": "Télécharger le CV",
+      "toast.formError": "Veuillez vérifier les champs en erreur.",
+      "toast.formSuccess": "Client mail ouvert avec votre message.",
       "form.nameLabel": "Nom complet",
       "form.namePlaceholder": "Votre nom",
       "form.emailLabel": "Adresse email",
@@ -181,7 +187,10 @@
       "journey.certCyber": "Cisco: Introduction to Cybersecurity",
       "journey.certHacker": "Cisco: Ethical Hacker",
       "journey.socialTitle": "Community & Workshops",
-      "journey.socialItems": "Humanitarian Project (Pouponnière de Médina) · « Build Your Business » Workshop (ISM)",
+      "journey.coachTitle": "Coach & Jury — Entrepreneurship Weeks (Groupe ISM)",
+      "journey.coachDesc": "Mentored students on theme, deliverables, and pitches; selected groups and served on the semi-final jury.",
+      "journey.socialHumanitarian": "Humanitarian Project (Pouponnière de Médina)",
+      "journey.socialWorkshop": "« Build Your Business » Workshop (ISM)",
       "journey.item1Period": "10/2026 — Present",
       "journey.item1Title": "Software Developer Intern — Web & Mobile",
       "journey.item1Org": "Kiki Traiteur · Dakar",
@@ -239,18 +248,19 @@
       "works.labelSolution": "Solution & Features",
       "works.lawtanSolution": "Public showcase, marketplace, ordering flow, WhatsApp-redirected quote requests, and corresponding admin back-office features.",
       "works.nfcMeta": "HR SaaS · Multi-tenant",
-      "works.nfcStatus": "Simulated NFC",
+      "works.nfcStatus": "Web NFC · Terminals",
       "works.nfcSummary": "Human resources and attendance tracking application designed to isolate data for multiple companies within a single platform.",
       "works.nfcSolution": "Company onboarding, email invitations, employee & worker category management, HR dashboard, and attendance logs.",
       "works.labelNote": "Technical note",
-      "works.nfcNote": "NFC check-in is currently simulated in software (no physical NFC hardware terminal is connected).",
+      "works.nfcNote": "NFC reading supported via Web NFC Reader, with support for adding and connecting dedicated terminals.",
       "works.nfcMock1": "Isolated company tenants & email invites",
       "works.nfcMock2": "Attendance logs & HR categories",
       "works.immoMeta": "Full Lifecycle · Real Estate",
       "works.immoSummary": "Real-estate management platform centralizing listings, users, visits, and contracts. Owned end-to-end from modeling to monitoring.",
       "works.labelRole": "Role & Scope",
       "works.immoRole": "Product Owner, Lead Developer, Full Stack & Backend, DevOps and PostgreSQL management (role-based JWT, testing, Docker, CI/CD).",
-      "works.brasilMeta": "Collaborative · Multi-module",
+      "works.brasilTitle": "Restaurant Management",
+      "works.brasilMeta": "Multi-module",
       "works.brasilStatus": "Live on Render",
       "works.brasilSummary": "Multi-module architecture sharing a unified SQL database (modelisation, java, csharp, symfony branches): C# ASP.NET MVC client, Java Console resources, and Symfony manager portal.",
       "works.brasilSolution": "Catalogue, orders, pickup/delivery modes, Wave / Orange Money payments, delivery zone assignment, and daily manager analytics.",
@@ -270,7 +280,9 @@
       "contact.copy": "Copy",
       "contact.copied": "Copied",
       "contact.phoneLabel": "Phone",
-      "contact.cvDownload": "Download CV (2026)",
+      "contact.cvDownload": "Download CV",
+      "toast.formError": "Please fix the highlighted fields.",
+      "toast.formSuccess": "Mail client opened with your message.",
       "form.nameLabel": "Full name",
       "form.namePlaceholder": "Your name",
       "form.emailLabel": "Email address",
@@ -459,6 +471,18 @@
       backToTopBtn.classList.toggle("is-visible", scrollTop > 360 && !footerVisible);
     }
 
+    // Hero portrait scroll parallax (image moves inside fixed frame)
+    var heroPortraitImg = document.getElementById("heroPortraitImg");
+    if (heroPortraitImg && effectiveMotion !== "none") {
+      var imgShift = Math.max(-42, Math.min(0, -scrollTop * 0.14));
+      heroPortraitImg.style.transform = "translate3d(0, " + imgShift.toFixed(1) + "px, 0)";
+    }
+
+    // Acte 05: Native sticky horizontal track update (zero pin-spacer overlap bugs)
+    if (typeof window.updateProjectsScroll === "function") {
+      window.updateProjectsScroll();
+    }
+
     // Acte 02: Progress bar starting at top (scaleY: 0 -> 1) + synchronized marker reveals
     var tEl = document.getElementById("journeyTimeline");
     var tBar = document.getElementById("timelineProgress");
@@ -531,6 +555,24 @@
     });
   }
 
+  var toastEl = document.getElementById("toast");
+  var toastMsgEl = document.getElementById("toastMsg");
+  var toastTimer = null;
+
+  function showToast(message, type) {
+    if (!toastEl || !toastMsgEl) return;
+    if (toastTimer) window.clearTimeout(toastTimer);
+    toastMsgEl.textContent = message;
+    toastEl.classList.remove("toast--error", "toast--success", "is-visible");
+    if (type === "error") toastEl.classList.add("toast--error");
+    else if (type === "success") toastEl.classList.add("toast--success");
+    void toastEl.offsetWidth;
+    toastEl.classList.add("is-visible");
+    toastTimer = window.setTimeout(function () {
+      toastEl.classList.remove("is-visible");
+    }, 3600);
+  }
+
   var contactForm = document.getElementById("contactForm");
   if (contactForm) {
     contactForm.addEventListener("submit", function (e) {
@@ -551,12 +593,16 @@
         f.el.setAttribute("aria-invalid", msg ? "true" : "false");
         if (msg) valid = false;
       });
-      if (!valid) return;
+      if (!valid) {
+        showToast(t("toast.formError"), "error");
+        return;
+      }
 
       var mailto = "mailto:mouhamethiam7@gmail.com?subject=" +
         encodeURIComponent(fields[2].el.value.trim()) +
         "&body=" + encodeURIComponent(fields[0].el.value.trim() + " (" + fields[1].el.value.trim() + ")\n\n" + fields[3].el.value.trim());
       window.location.href = mailto;
+      showToast(t("toast.formSuccess"), "success");
       var status = document.getElementById("formStatus");
       if (status) status.textContent = t("form.opened");
     });
@@ -576,6 +622,104 @@
   if (effectiveMotion === "none") {
     showAllImmediately();
     return;
+  }
+
+  // Acte 05: Bulletproof 3-state Horizontal Track + Difference-Blend Tick Ruler (independent of GSAP)
+  var projectsOuter = document.getElementById("projectsTrackOuter");
+  var projectsStage = document.getElementById("projectsStage");
+  var projectsRail = document.getElementById("projectsRail");
+  var rulerTicks = document.getElementById("projectsRulerTicks");
+  var rulerNeedle = document.getElementById("projectsRulerNeedle");
+  var rulerCounter = document.getElementById("projectsRulerCounter");
+  var projectsMaxX = 0;
+  var projectsTotalCount = 1;
+
+  if (rulerTicks && !rulerTicks.children.length) {
+    for (var ti = 0; ti <= 24; ti++) {
+      var tick = document.createElement("span");
+      tick.className = "projects-ruler__tick" + (ti % 4 === 0 ? " projects-ruler__tick--major" : "");
+      rulerTicks.appendChild(tick);
+    }
+  }
+
+  function padTwo(n) { return n < 10 ? "0" + n : String(n); }
+
+  window.updateProjectsScroll = function () {
+    if (!projectsOuter || !projectsStage || !projectsRail || projectsMaxX <= 0) return;
+    var navHeight = 72;
+    var outerRect = projectsOuter.getBoundingClientRect();
+    var raw = (navHeight - outerRect.top) / projectsMaxX;
+    var progress = Math.min(1, Math.max(0, raw));
+
+    if (outerRect.top > navHeight) {
+      projectsStage.classList.remove("is-pinned", "is-after");
+      projectsStage.style.top = "";
+    } else if (outerRect.top >= navHeight - projectsMaxX) {
+      projectsStage.classList.add("is-pinned");
+      projectsStage.classList.remove("is-after");
+      projectsStage.style.top = "";
+    } else {
+      projectsStage.classList.remove("is-pinned");
+      projectsStage.classList.add("is-after");
+      projectsStage.style.top = projectsMaxX + "px";
+    }
+
+    projectsRail.style.transform = "translate3d(" + (-progress * projectsMaxX).toFixed(1) + "px, 0, 0)";
+
+    var trackEl = rulerNeedle ? rulerNeedle.parentElement : null;
+    if (rulerNeedle && trackEl) {
+      var travel = Math.max(0, trackEl.clientWidth - rulerNeedle.offsetWidth);
+      rulerNeedle.style.transform = "translateX(" + (progress * travel).toFixed(1) + "px)";
+    }
+    if (rulerCounter) {
+      var idx = Math.min(projectsTotalCount, Math.max(1, Math.round(progress * (projectsTotalCount - 1)) + 1));
+      rulerCounter.textContent = padTwo(idx) + " / " + padTwo(projectsTotalCount);
+    }
+  };
+
+  window.rebuildProjectsTrack = function () {
+    if (!projectsOuter || !projectsStage || !projectsRail) return;
+    projectsStage.classList.remove("is-pinned", "is-after");
+    projectsStage.style.top = "";
+    projectsRail.style.transform = "translate3d(0, 0, 0)";
+
+    var visibleStops = Array.prototype.filter.call(
+      projectsRail.querySelectorAll(".project-stop"),
+      function (el) { return !el.classList.contains("is-hidden"); }
+    );
+    projectsTotalCount = visibleStops.length || 1;
+    projectsMaxX = Math.max(0, projectsRail.scrollWidth - projectsStage.clientWidth);
+
+    if (projectsMaxX > 0) {
+      projectsOuter.style.height = (projectsStage.offsetHeight + projectsMaxX) + "px";
+    } else {
+      projectsOuter.style.height = "auto";
+    }
+
+    if (rulerCounter) rulerCounter.textContent = "01 / " + padTwo(projectsTotalCount);
+    if (rulerNeedle) rulerNeedle.style.transform = "translateX(0px)";
+    window.updateProjectsScroll();
+  };
+
+  window.rebuildProjectsTrack();
+  window.addEventListener("resize", window.rebuildProjectsTrack, { passive: true });
+  window.addEventListener("load", window.rebuildProjectsTrack);
+
+  if (projectsRail) {
+    projectsRail.querySelectorAll(".project-stop").forEach(function (stop) {
+      stop.addEventListener("focus", function () {
+        if (!projectsOuter || projectsMaxX <= 0) return;
+        var visibleStops = Array.prototype.filter.call(
+          projectsRail.querySelectorAll(".project-stop"),
+          function (el) { return !el.classList.contains("is-hidden"); }
+        );
+        var idx = visibleStops.indexOf(stop);
+        if (idx < 0 || visibleStops.length <= 1) return;
+        var ratio = idx / (visibleStops.length - 1);
+        var outerTop = window.scrollY + projectsOuter.getBoundingClientRect().top - 72;
+        window.scrollTo({ top: outerTop + ratio * projectsMaxX, behavior: "smooth" });
+      });
+    });
   }
 
   // Native IntersectionObserver for [data-reveal] (always active so sections reveal progressively even without GSAP CDN)
@@ -647,94 +791,6 @@
           start: "top 82%",
           once: true
         }
-      });
-    }
-
-    // Acte 05: Horizontal Sticky Track + Difference-Blend Tick Ruler
-    var projectsStage = document.getElementById("projectsStage");
-    var projectsRail = document.getElementById("projectsRail");
-    var rulerTicks = document.getElementById("projectsRulerTicks");
-    var rulerNeedle = document.getElementById("projectsRulerNeedle");
-    var rulerCounter = document.getElementById("projectsRulerCounter");
-    var projectsTrigger = null;
-
-    if (rulerTicks && !rulerTicks.children.length) {
-      for (var ti = 0; ti <= 24; ti++) {
-        var tick = document.createElement("span");
-        tick.className = "projects-ruler__tick" + (ti % 4 === 0 ? " projects-ruler__tick--major" : "");
-        rulerTicks.appendChild(tick);
-      }
-    }
-
-    function padTwo(n) { return n < 10 ? "0" + n : String(n); }
-
-    window.rebuildProjectsTrack = function () {
-      if (projectsTrigger) {
-        projectsTrigger.kill();
-        projectsTrigger = null;
-      }
-      if (!projectsStage || !projectsRail) return;
-      window.gsap.set(projectsRail, { x: 0 });
-
-      var visibleStops = Array.prototype.filter.call(
-        projectsRail.querySelectorAll(".project-stop"),
-        function (el) { return !el.classList.contains("is-hidden"); }
-      );
-      var totalCount = visibleStops.length || 1;
-      if (rulerCounter) rulerCounter.textContent = "01 / " + padTwo(totalCount);
-      if (rulerNeedle) rulerNeedle.style.transform = "translateX(0px)";
-
-      if (!window.matchMedia || !window.matchMedia("(min-width: 768px)").matches) return;
-
-      var maxScrollX = Math.max(0, projectsRail.scrollWidth - projectsStage.clientWidth);
-      if (maxScrollX <= 0) return;
-
-      var tween = window.gsap.to(projectsRail, {
-        x: -maxScrollX,
-        ease: "none",
-        scrollTrigger: {
-          trigger: projectsStage,
-          start: "top 72px",
-          end: function () { return "+=" + maxScrollX; },
-          pin: true,
-          scrub: true,
-          fastScrollEnd: true,
-          preventOverlaps: true,
-          invalidateOnRefresh: true,
-          onUpdate: function (self) {
-            var trackEl = rulerNeedle ? rulerNeedle.parentElement : null;
-            if (rulerNeedle && trackEl) {
-              var travel = Math.max(0, trackEl.clientWidth - rulerNeedle.offsetWidth);
-              rulerNeedle.style.transform = "translateX(" + (self.progress * travel).toFixed(1) + "px)";
-            }
-            if (rulerCounter) {
-              var idx = Math.min(totalCount, Math.max(1, Math.round(self.progress * (totalCount - 1)) + 1));
-              rulerCounter.textContent = padTwo(idx) + " / " + padTwo(totalCount);
-            }
-          }
-        }
-      });
-      projectsTrigger = tween.scrollTrigger;
-    };
-
-    var rebuildProjectsTrack = window.rebuildProjectsTrack;
-    rebuildProjectsTrack();
-
-    // Keyboard operability for horizontal stops
-    if (projectsRail) {
-      projectsRail.querySelectorAll(".project-stop").forEach(function (stop) {
-        stop.addEventListener("focus", function () {
-          if (!projectsTrigger || !window.matchMedia("(min-width: 768px)").matches) return;
-          var visibleStops = Array.prototype.filter.call(
-            projectsRail.querySelectorAll(".project-stop"),
-            function (el) { return !el.classList.contains("is-hidden"); }
-          );
-          var idx = visibleStops.indexOf(stop);
-          if (idx < 0 || visibleStops.length <= 1) return;
-          var ratio = idx / (visibleStops.length - 1);
-          var targetScroll = projectsTrigger.start + ratio * (projectsTrigger.end - projectsTrigger.start);
-          window.scrollTo({ top: targetScroll, behavior: "smooth" });
-        });
       });
     }
   } else if ("IntersectionObserver" in window) {
